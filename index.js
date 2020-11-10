@@ -63,7 +63,6 @@ app.get("/auth/discord/callback", passport.authenticate("discord", {
 }), async (req, res) => {
   res.redirect("/");
   const axios = require("axios")
-  console.log(req.user.accessToken)
   await axios.put(`https://discord.com/api/v8/guilds/guild.id/members/${req.user.id}`, {access_token: req.user.accessToken}, {headers: {Authorization: `Bot ${process.env.token}`}}).catch(err => console.log(err))
 });
 
